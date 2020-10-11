@@ -29,10 +29,13 @@ const createPages = (_, pluginOptions) => {
           throw result.errors;
         }
 
-        result.data.allMarkdownRemark.edges
-          .filter(R.path(['node', 'fields', 'slug']))
-          .map(getMarkdownPage(options, postPage))
-          .map(page => createPage(page));
+        result.data.allMarkdownRemark ? result.data.allMarkdownRemark.edges.filter(_ramda2.default.path(['node', 'fields', 'slug'])).map((0, _getMarkdownPage2.default)(options, postPage)).map(function (page) {
+          return createPage(page);
+        }) : null;
+
+        result.data.allMdx ? result.data.allMdx.edges.filter(_ramda2.default.path(['node', 'fields', 'slug'])).map((0, _getMarkdownPage2.default)(options, postPage)).map(function (page) {
+          return createPage(page);
+        }) : null;
 
         resolve();
 
